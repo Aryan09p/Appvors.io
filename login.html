@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Appvora Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="logo/logo.jpg" alt="logo">
+            <span>Appvora.io</span>
+        </div>
+        <a href="home.html" style="color: #ccc; text-decoration: none; font-size: 0.9em;">Back to Home</a>
+    </header>
+
+    <main class="container auth-container">
+        <div class="auth-card">
+            <h2>Welcome Back</h2>
+            <form onsubmit="handleLogin(event)">
+                <input type="text" placeholder="Username or Email" required>
+                <input type="password" placeholder="Password" required>
+                
+                <div class="app-card" style="background: none; padding: 0; border: none; min-height: auto; box-shadow: none;">
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+            <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+            <p><a href="admin_login.html" style="font-size: 0.9em; color: #666;">Admin Login</a></p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 UniApps.io. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            const emailInput = document.querySelector('input[type="text"]').value;
+            const passwordInput = document.querySelector('input[type="password"]').value;
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            const validUser = users.find(user => user.email === emailInput && user.password === passwordInput);
+
+            if (validUser) {
+                localStorage.setItem("isLoggedIn", "true");
+                localStorage.removeItem("isAdmin");
+                window.location.href = "home.html";
+            } else {
+                alert("Invalid email or password!");
+            }
+        }
+    </script>
+</body>
+</html>

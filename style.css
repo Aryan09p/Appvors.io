@@ -1,0 +1,421 @@
+:root {
+    --bg-color: #0f0f1a;
+    --card-bg: #1a1a2e;
+    --text-color: #e0e0e0;
+    --accent-color: #00d4ff;
+    --secondary-accent: #d400ff;
+    --nav-bg: rgba(20, 20, 38, 0.95);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.search-box {
+    flex: 1;
+    text-align: center;
+}
+
+.search-box input {
+    background: #252540;
+    border: 1px solid #3d3d5c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    width: 300px;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+}
+
+.logout-btn {
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: var(--accent-color);
+    color: #000;
+}
+
+.nav {
+    background: #161625;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.nav a {
+    color: #aaa;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: 500;
+    position: relative;
+    transition: 0.3s;
+}
+
+.nav a:hover, .nav a.active {
+    color: white;
+}
+
+.nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-color), var(--secondary-accent));
+}
+
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #1f1f3a, #2d2d44);
+    color: white;
+    border-radius: 20px;
+    margin-bottom: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0,212,255,0.1) 0%, transparent 60%);
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+.hero h1 {
+    margin: 0;
+    font-size: 3em;
+    background: linear-gradient(90deg, #fff, #a5a5a5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+.hero p {
+    margin-top: 15px;
+    color: #ccc;
+    font-size: 1.1em;
+    position: relative;
+}
+
+h2 {
+    border-left: 4px solid var(--accent-color);
+    padding-left: 15px;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+.apps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.app-card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 16px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 320px;
+}
+
+.app-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    border-color: rgba(255,255,255,0.1);
+}
+
+.app-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 18px;
+    margin-bottom: 15px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.app-card h3 {
+    margin: 10px 0 5px;
+    font-size: 1.1em;
+    color: white;
+}
+
+.app-card p {
+    font-size: 0.85em;
+    color: #888;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.app-card button {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(90deg, var(--accent-color), var(--secondary-accent));
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.app-card button:hover {
+    opacity: 0.9;
+}
+
+.app-card a {
+    width: 100%;
+    display: block;
+}
+
+.footer {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 0.9em;
+    margin-top: 60px;
+    border-top: 1px solid #222;
+    background: #0b0b12;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3d3d5c;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+.horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    scroll-snap-type: x mandatory;
+}
+
+.horizontal-scroll .app-card {
+    min-width: 240px;
+    scroll-snap-align: start;
+}
+
+.support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.support-card {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 16px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.support-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+}
+
+.support-card h3 {
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.support-card p {
+    color: #ccc;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.support-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(90deg, var(--accent-color), var(--secondary-accent));
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.support-btn:hover {
+    opacity: 0.9;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+.contact {
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    text-align: center;
+    margin: 40px auto;
+    width: 60%;
+    background-color: rgba(255, 255, 255, 0.06);
+    padding: 30px;
+}
+
+.contact a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.auth-card {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.auth-card h2 {
+    border-left: none;
+    padding-left: 0;
+    margin-bottom: 30px;
+    color: white;
+    font-size: 2em;
+}
+
+.auth-card input {
+    width: 100%;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    background: #252540;
+    border: 1px solid #3d3d5c;
+    border-radius: 10px;
+    color: white;
+    font-size: 1em;
+    transition: 0.3s;
+}
+
+.auth-card input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+}
+
+.auth-card button {
+    margin-top: 10px;
+}
+
+.auth-card p {
+    margin-top: 20px;
+    color: #888;
+}
+
+.auth-card a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.user-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+.user-table th, .user-table td {
+    border: 1px solid #3d3d5c;
+    padding: 12px;
+    text-align: left;
+}
+.user-table th {
+    background-color: #252540;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify Email - Appvora Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="logo/logo.jpg" alt="logo">
+            <span>Appvora.io</span>
+        </div>
+    </header>
+
+    <main class="container auth-container">
+        <div class="auth-card">
+            <h2>Verify Email</h2>
+            <p>Please enter the 6-digit code sent to your email.</p>
+            <form onsubmit="handleVerify(event)">
+                <input type="number" id="otp" placeholder="Enter Verification Code" required>
+                
+                <div class="app-card" style="background: none; padding: 0; border: none; min-height: auto; box-shadow: none;">
+                    <button type="submit">Verify Account</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Appvora.io. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function handleVerify(event) {
+            event.preventDefault();
+            const enteredOtp = document.getElementById('otp').value;
+            const tempUser = JSON.parse(localStorage.getItem('tempUser'));
+
+            if (tempUser && enteredOtp === String(tempUser.otp)) {
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                users.push({ email: tempUser.email, password: tempUser.password });
+                localStorage.setItem('users', JSON.stringify(users));
+                localStorage.removeItem('tempUser');
+                alert('Verification Successful! Account created.');
+                window.location.href = "login.html";
+            } else {
+                alert('Invalid Verification Code! Please try again.');
+            }
+        }
+    </script>
+</body>
+</html>

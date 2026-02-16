@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up - Appvora Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="logo/logo.jpg" alt="logo">
+            <span>Appvora.io</span>
+        </div>
+        <a href="home.html" style="color: #ccc; text-decoration: none; font-size: 0.9em;">Back to Home</a>
+    </header>
+
+    <main class="container auth-container">
+        <div class="auth-card">
+            <h2>Create Account</h2>
+            <form onsubmit="handleSignup(event)">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" id="email" placeholder="Email Address" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+                
+                <div class="app-card" style="background: none; padding: 0; border: none; min-height: auto; box-shadow: none;">
+                    <button type="submit">Sign Up</button>
+                </div>
+            </form>
+            <p>Already have an account? <a href="login.html">Login</a></p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 UniApps.io. All rights reserved.</p>
+    </footer>
+    <script>
+        function handleSignup(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            if (users.some(user => user.email === email)) {
+                alert("User with this email already exists!");
+                return;
+            }
+
+            const otp = Math.floor(100000 + Math.random() * 999999);
+
+            const tempUser = { email, password, otp };
+            localStorage.setItem('tempUser', JSON.stringify(tempUser));
+
+            alert(`(Simulation) Your verification code is: ${otp}`);
+            window.location.href = "verify.html";
+        }
+    </script>
+</body>
+</html>
