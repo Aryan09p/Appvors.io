@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login - Appvora Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="logo/logo.jpg" alt="logo">
+            <span>Appvora.io</span>
+        </div>
+        <a href="home.html" style="color: #ccc; text-decoration: none; font-size: 0.9em;">Back to Home</a>
+    </header>
+
+    <main class="container auth-container">
+        <div class="auth-card">
+            <h2>Admin Login</h2>
+            <form onsubmit="handleAdminLogin(event)">
+                <input type="text" placeholder="Admin Username" required>
+                <input type="password" placeholder="Password" required>
+                
+                <div class="app-card" style="background: none; padding: 0; border: none; min-height: auto; box-shadow: none;">
+                    <button type="submit">Login as Admin</button>
+                </div>
+            </form>
+            <p><a href="login.html">User Login</a></p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Appvora.io All rights reserved.</p>
+    </footer>
+
+    <script>
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            const usernameInput = document.querySelector('input[type="text"]').value;
+            const passwordInput = document.querySelector('input[type="password"]').value;
+
+            // Obfuscated credentials for basic security. atob() decodes a base-64 encoded string.
+            const adminUser = atob("QXJ5YW4="); // Decodes to "Aryan"
+            const adminPass = atob("QXJ5YW4wOTEyMjAwNlBA"); // Decodes to "Aryan09122006P@"
+
+            if (usernameInput === adminUser && passwordInput === adminPass) {
+                localStorage.setItem("isLoggedIn", "true");
+                localStorage.setItem("isAdmin", "true");
+                window.location.href = "user_data.html";
+            } else {
+                alert("Invalid Admin credentials!");
+            }
+        }
+    </script>
+</body>
+</html>
